@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  
+  
+  <style>
+div {
+  padding-left: 20px;
+}
+</style>
+    </head>
+    <body>
+        <div id="app">
+		
+		
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">My JS Project</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a v-on:click="setHome();restart_all();" style="cursor:pointer;">Home</a></li>
+      <li><a v-on:click="set1(); restart_all();" style="cursor:pointer;">Game1</a></li>
+      <li><a v-on:click="set2(); restart_all();" style="cursor:pointer;">Game2</a></li>
+      <li><a v-on:click="set3(); restart_all();" style="cursor:pointer;">Game3</a></li>
+	  <li><a v-on:click="set4(); restart_all();" style="cursor:pointer;">Game4</a></li>
+
+    </ul>
+	</div>
+	</nav>
+		
+		
+        <h1>Guessing number game</h1>
+
+		<br>
+		<br>
+
+
+        <!-- Iteration1-->
+        <div v-if="seen1">
+            Please input a number between 0 and 99
+		    <br></br>
+
+		    <input type = "text" v-model="message1">
+		    <br></br>
+
+		    <button v-on:click="Submit1" :disabled='disabled'>Submit</button><br>
+		    <p v-if="isGussed_1">{{result}}</p>
+        <p v-if="GuessingTime">Time of guessing: {{numTrial}}</p>
+        </div>
+
+        <!-- Iteration2-->
+        <div v-if="seen2">
+            Please input a number between 0 and 99, we will reply you a weather condition which means a difference to the correct number.
+		    <br></br>
+
+		    <input type = "text" v-model="message2">
+		    <br></br>
+
+		    <button v-on:click="Submit2">Submit</button><br>
+		    <p v-if="isGussed_2">{{result}}</p>
+        <p v-if="GuessingTime">Time of guessing: {{numTrial}}</p>
+        </div>
+
+        <!-- Iteration3-->
+        <div v-if="seen3">
+              <div>{{message3}}</div>
+              <br>
+                <input type="text" name="" value="" v-model="userNumber3">
+                <button name="" value="Set Number" v-on:click ="setNum3">Set Number</button>
+              <br>
+			  <br>
+              <button name="" value="Get a number from the programme" v-on:click ="guess3">Get a number from the programme</button>
+              <br>
+              <br>
+              <div>{{computerOutput}}</div>
+              <br>
+              <button name="" value="Try Higher" v-on:click ="tryhigher">Try Higher</button>
+              <button name="" value="Try Lower" v-on:click ="trylower">Try Lower</button>
+              <button name="" value="Correct" v-on:click ="correct3">Correct</button>
+              <br>
+              <br>
+              <label for="">Time of guessing: {{counterDisplay}}</label>
+              <br>
+              <br>
+              <button name="" value="Reset" v-on:click ="restart3">Reset</button>
+              <br>
+        </div>
+
+        <!-- Iteration4-->
+        <div v-if="seen4">
+              <form style="background-color:lightgreen;
+              width: auto;
+              height: auto;
+              border-radius:10px;
+              ">
+              <h3>Correct Num and Result area</h3>
+              <div>{{message}}</div>
+              <br>
+			  <p>Time of guessing: {{counterDisplay}}</p>
+              </form>
+              <br>
+              <form action="#" method="post" v-on:submit.prevent="setNum">
+                <input type="text" name="" value="" v-model="userNumber">
+                <input type="button" name="" value="Set Number" @click ="setNum">
+                <input type="button" name="" value="Reset" @click ="restart">
+              </form>
+              <br>
+              <input type="button" name="" value="Computer starts guesses"  @click ="guess">
+              <br>
+              <br>
+              <input type="button" name="" value="Hot" @click ="hot">
+              <input type="button" name="" value="Warm" @click ="warm">
+              <input type="button" name="" value="Cool" @click ="cool">
+              <input type="button" name="" value="cold" @click ="cold">
+              <input type="button" name="" value="Correct!" @click ="correct">
+              <br>
+			  <p>condition: {{this.condition}}</p>
+
+			  <br>
+			  
+              <h3 style="background-color:Aquamarine;">Lists for guesses</h3>
+              <div style="background-color:Aquamarine;
+              width: auto;
+              height: auto;
+              border-radius:10px;
+              column-count: 8;
+              column-gap: 1em;
+              text-overflow: ellipsis;
+              word-wrap: break-word;
+              overflow: hidden;
+              max-height: 20em;
+              line-height: 2em;
+              ">
+              <div v-for="(lists, index) in lists"
+              v-bind:number="lists.number"
+              :key ="index"
+              >
+              <b>{{ index }}</b>: {{ lists.number }}
+              </div>
+              </div>
+              <br>
+              <form style="background-color:lightblue;
+              width: auto;
+              height: auto;
+              border-radius:10px;
+              ">
+              <h3>Messages area</h3>
+              <div>{{computerOutput}}</div>
+              <br>
+              <div>{{yourReply}}</div>
+              <br>
+              </form>
+              <br>
+              <br>
+          </div>
+	</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
